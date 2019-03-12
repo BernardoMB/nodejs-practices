@@ -1,0 +1,14 @@
+{
+  "name": "03exports",
+  "version": "1.0.0",
+  "description": "",
+  "main": "scope-b.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Bernardo Mondragon",
+  "license": "ISC",
+  "dependencies": {
+    "lodash": "^4.17.3"
+  }
+}

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <!--Set apps  title.-->
+    <title>Join | ChatApp</title>
+    <!--Grab the same style sheet.-->
+    <link rel="stylesheet" href="/css/styles.css">
+    <!--The viewport type let us specify how we want our site to be rendered.-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+</head>
+
+<!--Center the form in the screen and give the blue background.-->
+<body class="centered-form">
+    <!--Centered white box.-->
+    <div class="centered-form__form">
+        <!--We need a form tag because we are going to be sending all the data.-->
+        <!--With the action attribute we can customize the page we are going to be sent.-->
+        <!--With the action attribute we can also send all the data in the url.-->
+        <!--We can acces the data that the from will be sending typing in the dev-console "window.location.search"-->
+        <form action="/chat.html">
+            <div class="form-field">
+                <h3>Join a Chat</h3>
+            </div>
+            <div class="form-field">
+                <label>Display name</label>
+                <input type="text" name="name" autofocus/>
+            </div>
+            <div class="form-field">
+                <label>Room name</label>
+                <input type="text" name="room" />
+            </div>
+            <div class="form-field">
+                <button>Join</button>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>
