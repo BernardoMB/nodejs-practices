@@ -28,14 +28,20 @@ console.log("\n\tSee greetings.txt");
 
 // Requireing modules from NodeJS' API.
 var fs = require('fs'); // module to write to a file.
-fs.appendFile('greetings.txt', 'Hello world!');
+fs.appendFile('greetings.txt', 'Hello world!', (err) => {
+	if (err) throw err;
+	console.log('The "data to append" was appended to file!');
+});
 var os = require('os'); // module to get some info about the windows user.
 console.log("\n\tUSER INFO:")
 console.log(os.userInfo());
 // Instead of concatenating strings with '+', one can use template strings:
 console.log(`Hello ${os.userInfo().username}!`);
 // Now append to the same file.
-fs.appendFile('greetings.txt', `\n\nHello ${os.userInfo().username}!`); // Note the "`".
+fs.appendFile('greetings.txt', `\n\nHello ${os.userInfo().username}!`, (err) => {
+	if (err) throw err;
+	console.log('The "data to append" was appended to file!');
+}); // Note the "`".
 
 // Requireing modules from thirth party library (use of npm).
 var _ = require('lodash');
@@ -62,7 +68,7 @@ function odds(numbers, callback) {
 }
 
 console.log("\n\tCALLBACKS");
-var myFunction = function(err, data) {
+var myFunction = (err, data) => {
 	if (err) {
 		throw err;
 	} else {
