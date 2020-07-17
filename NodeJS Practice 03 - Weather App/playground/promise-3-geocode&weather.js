@@ -3,8 +3,9 @@ const request = require('request');
 var geocodeAddress = (address) => {
     return new Promise((resolve, reject) => {
         var encodedAddress = encodeURIComponent(address);
+        var apiKey = 'AIzaSyAjKVL0P-26C6Qw8TpcK4fskV8gr-alvxE';
         var requestObject = {
-            url: `https://maps.googleapis.com/maps/api/geocode/json?address=${encodedAddress}`,
+            url: `https://maps.googleapis.com/maps/api/geocode/json?address=${encodedAddress}&key=${apiKey}`,
             json: true
         }
         var callbackArrowFunction = (error, response, body) => {
@@ -28,13 +29,15 @@ var geocodeAddress = (address) => {
 
 var getWeather = (lat, lng) => {
     return new Promise((resolve, reject) => {
+        var apiKey = 'AIzaSyAjKVL0P-26C6Qw8TpcK4fskV8gr-alvxE';
         request({
-            url: `https://api.forecast.io/forecast/4a04d1c42fd9d32c97a2c291a32d5e2d/${lat},${lng}`,
+            url: `https://api.forecast.io/forecast/${apiKey}/${lat},${lng}`,
             json: true
         }, (error, response, body) => {
             if (error) {
                 reject('Unable to connect to Google servers.');
             } else if (response.statusCode === 400) {
+                console.log(body);
                 reject('Cannot find weather forecast fot that location.');
             } else if (response.statusCode === 200) {
                 resolve({
