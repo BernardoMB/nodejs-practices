@@ -3,12 +3,13 @@ const request = require('request');
 var geocodeAddress = (address) => {
     return new Promise((resolve, reject) => {
         var encodedAddress = encodeURIComponent(address);
-        var apiKey = '';
+        var apiKey = 'AIzaSyAjKVL0P-26C6Qw8TpcK4fskV8gr-alvxE';
         var requestObject = {
             url: `https://maps.googleapis.com/maps/api/geocode/json?address=${encodedAddress}&key=${apiKey}`,
             json: true
         }
         var callbackArrowFunction = (error, response, body) => {
+            console.log(body);
             if (error) {
                 reject('Unable to connect to Google servers.');
             } else if (body.status === 'ZERO_RESULTS') {
@@ -29,20 +30,27 @@ var geocodeAddress = (address) => {
 
 var getWeather = (lat, lng) => {
     return new Promise((resolve, reject) => {
-        var apiKey = '';
+        var apiKey = '29b0d090e5msh40ddcc235d76ec1p1a4c6bjsnfa4d1d8eeae6';
         request({
-            url: `https://api.forecast.io/forecast/${apiKey}/${lat},${lng}`,
+            url: `https://community-open-weather-map.p.rapidapi.com/weather?lat=${lat}&lon=${lng}`,
+            headers: {
+                "x-rapidapi-host": "community-open-weather-map.p.rapidapi.com",
+                "x-rapidapi-key": apiKey,
+                "useQueryString": true
+                
+            },
             json: true
         }, (error, response, body) => {
+            console.log('\nResponse status:', response.statusCode);
+            console.log('\nReponse body', response.body);
             if (error) {
-                reject('Unable to connect to Google servers.');
+                reject('Unable to connect to servers.');
             } else if (response.statusCode === 400) {
                 console.log(body);
                 reject('Cannot find weather forecast fot that location.');
             } else if (response.statusCode === 200) {
                 resolve({
-                    temperature: body.currently.temperature,
-                    apparentTemperature: body.currently.apparentTemperature
+                    getWeatherData: response.body
                 });
             }
         });
@@ -58,6 +66,7 @@ geocodeAddress('53120 paseo san agustin')
         console.log(res);
     })
     .then((res) => {
+        console.log('Res', res);
         console.log(JSON.stringify(res, undefined, 2));
     }, (res) => {
         console.log('Something went wrong retriveing the weather.');
