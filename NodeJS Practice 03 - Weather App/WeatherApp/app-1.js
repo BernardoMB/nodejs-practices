@@ -19,14 +19,16 @@ const argv = yargs
     .help()
     .alias('help', 'h')
     .argv;
-console.log(argv);
+// console.log(argv);
 
 // Because the input is going to be on a url it must be encoded usging a built in JS function:
 var encodedAddress = encodeURIComponent(argv.address);
 
+var apiKey = 'AIzaSyAjKVL0P-26C6Qw8TpcK4fskV8gr-alvxE';
+
 var requestObject = {
     // Using query strings (%20: space encoded).
-    url: `https://maps.googleapis.com/maps/api/geocode/json?address=${encodedAddress}`,
+    url: `https://maps.googleapis.com/maps/api/geocode/json?address=${encodedAddress}&key=${apiKey}`,
     // The data that comes in will be parsed to a json object.
     json: true
 }
@@ -39,7 +41,7 @@ var callbackArrowFunction = (error, response, body) => {
     } else if (body.status === 'ZERO_RESULTS') {
         console.log('Unable to find that address.');
     } else {
-        console.log('No errors.');
+        // console.log('No errors.');
         // Printing results with template Strings.
         console.log(`Address: ${body.results[0].formatted_address}`);
         console.log(`Latitude: ${body.results[0].geometry.location.lat}`);

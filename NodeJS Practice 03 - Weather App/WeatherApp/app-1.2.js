@@ -19,9 +19,9 @@ const argv = yargs
     .help()
     .alias('help', 'h')
     .argv;
-console.log(argv);
+// console.log(argv);
 
-const apiKey = 'AIzaSyAWEu5iJDVTWdFJ4jPz2sMZQx1Kq5Q5PAU';
+const apiKey = 'AIzaSyAjKVL0P-26C6Qw8TpcK4fskV8gr-alvxE';
 const outputFormat = 'json';
 
 var getData = (address) => {
