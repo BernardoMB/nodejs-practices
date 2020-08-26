@@ -11,7 +11,7 @@ describe('App', () => {
     spy('Andrew', 25);
     expect(spy).toHaveBeenCalledWith('Andrew', 25);
   });
- 
+
   var db = {
     saveUser: expect.createSpy()
   };
