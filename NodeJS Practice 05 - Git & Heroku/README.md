@@ -136,7 +136,7 @@ To know more about `SSH keys` head to <https://help.github.com/categories/ssh/>
    ```bash
    $ heroku keys:add
    ```
-   This is going to scan our SSH directory and add up our key. So much more easier than configure the SSH key no Github!
+   This is going to scan our SSH directory and add up our key. So much more easier than configure the SSH key on Github!
  
 - We can view the keys added on Heroku by running the following command:
    ```bash
